@@ -34,3 +34,14 @@ D:\Adrien Burnett\LocaLux-GestActivite\obj\Debug\net6.0-windows\LocaLux-GestActi
 D:\Adrien Burnett\LocaLux-GestActivite\obj\Debug\net6.0-windows\LocaLux-GestActivite.genruntimeconfig.cache
 D:\Adrien Burnett\LocaLux-GestActivite\obj\Debug\net6.0-windows\ref\LocaLux-GestActivite.dll
 D:\Adrien Burnett\LocaLux-GestActivite\obj\Debug\net6.0-windows\LocaLux_GestActivite.ControleForm.resources
+D:\Adrien Burnett\LocaLux-GestActivite\obj\Debug\net6.0-windows\LocaLux_GestActivite.LoginForm.resources
+D:\Adrien Burnett\LocaLux-GestActivite\bin\Debug\net6.0-windows\Otp.NET.dll
+D:\Adrien Burnett\LocaLux-GestActivite\bin\Debug\net6.0-windows\QRCoder.dll
+D:\Adrien Burnett\LocaLux-GestActivite\obj\Debug\net6.0-windows\LocaLux_GestActivite.AjoutUtilisateurForm.resources
+D:\Adrien Burnett\LocaLux-GestActivite\bin\Debug\net6.0-windows\BouncyCastle.Cryptography.dll
+D:\Adrien Burnett\LocaLux-GestActivite\bin\Debug\net6.0-windows\MailKit.dll
+D:\Adrien Burnett\LocaLux-GestActivite\bin\Debug\net6.0-windows\MimeKit.dll
+D:\Adrien Burnett\LocaLux-GestActivite\bin\Debug\net6.0-windows\System.Formats.Asn1.dll
+D:\Adrien Burnett\LocaLux-GestActivite\bin\Debug\net6.0-windows\System.Security.Cryptography.Pkcs.dll
+D:\Adrien Burnett\LocaLux-GestActivite\bin\Debug\net6.0-windows\runtimes\win\lib\net6.0\System.Security.Cryptography.Pkcs.dll
+D:\Adrien Burnett\LocaLux-GestActivite\obj\Debug\net6.0-windows\LocaLux_GestActivite.LocationNonControllerForm.resources

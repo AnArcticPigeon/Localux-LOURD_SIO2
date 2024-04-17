@@ -24,8 +24,11 @@ namespace LocaLux_GestActivite.Models
         public virtual DbSet<Forfait> Forfaits { get; set; } = null!;
         public virtual DbSet<MessengerMessage> MessengerMessages { get; set; } = null!;
         public virtual DbSet<Modele> Modeles { get; set; } = null!;
+        public virtual DbSet<Piece> Pieces { get; set; } = null!;
         public virtual DbSet<Reservation> Reservations { get; set; } = null!;
+        public virtual DbSet<TypeDegat> TypeDegats { get; set; } = null!;
         public virtual DbSet<Utilisateur> Utilisateurs { get; set; } = null!;
+        public virtual DbSet<Verification> Verifications { get; set; } = null!;
         public virtual DbSet<Voiture> Voitures { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -75,18 +78,40 @@ namespace LocaLux_GestActivite.Models
                 entity.Property(e => e.DeliveredAt).HasComment("(DC2Type:datetime_immutable)");
             });
 
+            modelBuilder.Entity<Modele>(entity =>
+            {
+                entity.HasMany(d => d.Pieces)
+                    .WithMany(p => p.Modeles)
+                    .UsingEntity<Dictionary<string, object>>(
+                        "ModelePiece",
+                        l => l.HasOne<Piece>().WithMany().HasForeignKey("PieceId").HasConstraintName("FK_E106393CC40FCFA8"),
+                        r => r.HasOne<Modele>().WithMany().HasForeignKey("ModeleId").HasConstraintName("FK_E106393CAC14B70A"),
+                        j =>
+                        {
+                            j.HasKey("ModeleId", "PieceId").HasName("PRIMARY").HasAnnotation("MySql:IndexPrefixLength", new[] { 0, 0 });
+
+                            j.ToTable("modele_piece").UseCollation("utf8mb4_unicode_ci");
+
+                            j.HasIndex(new[] { "ModeleId" }, "IDX_E106393CAC14B70A");
+
+                            j.HasIndex(new[] { "PieceId" }, "IDX_E106393CC40FCFA8");
+
+                            j.IndexerProperty<int>("ModeleId").HasColumnType("int(11)").HasColumnName("modele_id");
+
+                            j.IndexerProperty<int>("PieceId").HasColumnType("int(11)").HasColumnName("piece_id");
+                        });
+            });
+
             modelBuilder.Entity<Reservation>(entity =>
             {
                 entity.HasOne(d => d.DestinationArriver)
                     .WithMany(p => p.ReservationDestinationArrivers)
                     .HasForeignKey(d => d.DestinationArriverId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_42C849557A078AD6");
 
                 entity.HasOne(d => d.DestinationDepart)
                     .WithMany(p => p.ReservationDestinationDeparts)
                     .HasForeignKey(d => d.DestinationDepartId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_42C84955FF824EB1");
 
                 entity.HasOne(d => d.LaVoiture)
@@ -115,6 +140,27 @@ namespace LocaLux_GestActivite.Models
                     .WithMany(p => p.Reservations)
                     .HasForeignKey(d => d.LeForfaitId)
                     .HasConstraintName("FK_42C84955B36D2087");
+            });
+
+            modelBuilder.Entity<Verification>(entity =>
+            {
+                entity.HasOne(d => d.IdControle)
+                    .WithMany(p => p.Verifications)
+                    .HasForeignKey(d => d.IdControleId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_5AF1C50B6D9BEB51");
+
+                entity.HasOne(d => d.IdDegat)
+                    .WithMany(p => p.Verifications)
+                    .HasForeignKey(d => d.IdDegatId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_5AF1C50B7428B409");
+
+                entity.HasOne(d => d.IdPiece)
+                    .WithMany(p => p.Verifications)
+                    .HasForeignKey(d => d.IdPieceId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_5AF1C50B94D4233D");
             });
 
             modelBuilder.Entity<Voiture>(entity =>

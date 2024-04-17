@@ -13,6 +13,7 @@ namespace LocaLux_GestActivite.Models
         public Modele()
         {
             Voitures = new HashSet<Voiture>();
+            Pieces = new HashSet<Piece>();
         }
 
         [Key]
@@ -28,5 +29,9 @@ namespace LocaLux_GestActivite.Models
 
         [InverseProperty("LeModele")]
         public virtual ICollection<Voiture> Voitures { get; set; }
+
+        [ForeignKey("ModeleId")]
+        [InverseProperty("Modeles")]
+        public virtual ICollection<Piece> Pieces { get; set; }
     }
 }

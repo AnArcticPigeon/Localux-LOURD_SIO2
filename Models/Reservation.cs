@@ -32,9 +32,9 @@ namespace LocaLux_GestActivite.Models
         [Column("le_client_id", TypeName = "int(11)")]
         public int LeClientId { get; set; }
         [Column("destination_depart_id", TypeName = "int(11)")]
-        public int DestinationDepartId { get; set; }
+        public int? DestinationDepartId { get; set; }
         [Column("destination_arriver_id", TypeName = "int(11)")]
-        public int DestinationArriverId { get; set; }
+        public int? DestinationArriverId { get; set; }
         [Column("le_chauffeur_id", TypeName = "int(11)")]
         public int? LeChauffeurId { get; set; }
         [Column("le_forfait_id", TypeName = "int(11)")]
@@ -44,10 +44,10 @@ namespace LocaLux_GestActivite.Models
 
         [ForeignKey("DestinationArriverId")]
         [InverseProperty("ReservationDestinationArrivers")]
-        public virtual Destination DestinationArriver { get; set; } = null!;
+        public virtual Destination? DestinationArriver { get; set; }
         [ForeignKey("DestinationDepartId")]
         [InverseProperty("ReservationDestinationDeparts")]
-        public virtual Destination DestinationDepart { get; set; } = null!;
+        public virtual Destination? DestinationDepart { get; set; }
         [ForeignKey("LaVoitureId")]
         [InverseProperty("Reservations")]
         public virtual Voiture LaVoiture { get; set; } = null!;

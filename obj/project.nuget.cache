@@ -1,10 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "/5Ck/IMJ858n6FFWXmmPTZTBh84yeLlseGx/fAuPiEuAgpzqzYzS2+Sbq2WFyz8dccuhZjAGSowYjLiTmtwHbg==",
+  "dgSpecHash": "pro39OiN6qz84HvDb5K06aAOWRqyCtMHJwhUJHf+H3TSBMEWEolhGjalUF3hsBhc/6jG1XkFetjygq0jDnzrgw==",
   "success": true,
   "projectFilePath": "D:\\Adrien Burnett\\LocaLux-GestActivite\\LocaLux-GestActivite.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\aburnett\\.nuget\\packages\\bouncycastle.cryptography\\2.3.0\\bouncycastle.cryptography.2.3.0.nupkg.sha512",
     "C:\\Users\\aburnett\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
+    "C:\\Users\\aburnett\\.nuget\\packages\\mailkit\\4.5.0\\mailkit.4.5.0.nupkg.sha512",
     "C:\\Users\\aburnett\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.29\\microsoft.entityframeworkcore.6.0.29.nupkg.sha512",
     "C:\\Users\\aburnett\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\6.0.29\\microsoft.entityframeworkcore.abstractions.6.0.29.nupkg.sha512",
     "C:\\Users\\aburnett\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\6.0.29\\microsoft.entityframeworkcore.analyzers.6.0.29.nupkg.sha512",
@@ -20,11 +22,18 @@
     "C:\\Users\\aburnett\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\6.0.0\\microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512",
     "C:\\Users\\aburnett\\.nuget\\packages\\microsoft.extensions.options\\6.0.0\\microsoft.extensions.options.6.0.0.nupkg.sha512",
     "C:\\Users\\aburnett\\.nuget\\packages\\microsoft.extensions.primitives\\6.0.0\\microsoft.extensions.primitives.6.0.0.nupkg.sha512",
+    "C:\\Users\\aburnett\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
+    "C:\\Users\\aburnett\\.nuget\\packages\\mimekit\\4.5.0\\mimekit.4.5.0.nupkg.sha512",
     "C:\\Users\\aburnett\\.nuget\\packages\\mysqlconnector\\2.1.2\\mysqlconnector.2.1.2.nupkg.sha512",
+    "C:\\Users\\aburnett\\.nuget\\packages\\otp.net\\1.4.0\\otp.net.1.4.0.nupkg.sha512",
     "C:\\Users\\aburnett\\.nuget\\packages\\pomelo.entityframeworkcore.mysql\\6.0.3\\pomelo.entityframeworkcore.mysql.6.0.3.nupkg.sha512",
+    "C:\\Users\\aburnett\\.nuget\\packages\\qrcoder\\1.4.3\\qrcoder.1.4.3.nupkg.sha512",
     "C:\\Users\\aburnett\\.nuget\\packages\\system.collections.immutable\\6.0.0\\system.collections.immutable.6.0.0.nupkg.sha512",
     "C:\\Users\\aburnett\\.nuget\\packages\\system.diagnostics.diagnosticsource\\6.0.1\\system.diagnostics.diagnosticsource.6.0.1.nupkg.sha512",
-    "C:\\Users\\aburnett\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
+    "C:\\Users\\aburnett\\.nuget\\packages\\system.drawing.common\\6.0.0\\system.drawing.common.6.0.0.nupkg.sha512",
+    "C:\\Users\\aburnett\\.nuget\\packages\\system.formats.asn1\\8.0.0\\system.formats.asn1.8.0.0.nupkg.sha512",
+    "C:\\Users\\aburnett\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
+    "C:\\Users\\aburnett\\.nuget\\packages\\system.security.cryptography.pkcs\\8.0.0\\system.security.cryptography.pkcs.8.0.0.nupkg.sha512"
   ],
   "logs": []
 }

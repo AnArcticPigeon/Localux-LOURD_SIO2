@@ -35,6 +35,12 @@ namespace LocaLux_GestActivite.Models
         [Column("mdp")]
         [StringLength(255)]
         public string? Mdp { get; set; }
+        [Column("sel")]
+        [StringLength(255)]
+        public string? Sel { get; set; }
+        [Column("code_otp")]
+        [StringLength(32)]
+        public string? CodeOtp { get; set; }
 
         [InverseProperty("Utilisateur")]
         public virtual ICollection<AncienMdp> AncienMdps { get; set; }
