@@ -29,6 +29,10 @@
         private void InitializeComponent()
         {
             groupBox1 = new GroupBox();
+            gbxOTP = new GroupBox();
+            lbOTPresult = new Label();
+            btnOTP = new Button();
+            label5 = new Label();
             tbxOtp = new TextBox();
             gpbNewPwd = new GroupBox();
             lbDifferentPwd = new Label();
@@ -44,19 +48,13 @@
             tbxLogin = new TextBox();
             label2 = new Label();
             label1 = new Label();
-            label5 = new Label();
-            gbxOTP = new GroupBox();
-            btnOTP = new Button();
-            lbOTPresult = new Label();
             groupBox1.SuspendLayout();
-            gpbNewPwd.SuspendLayout();
             gbxOTP.SuspendLayout();
+            gpbNewPwd.SuspendLayout();
             SuspendLayout();
             // 
             // groupBox1
             // 
-            groupBox1.Controls.Add(gbxOTP);
-            groupBox1.Controls.Add(gpbNewPwd);
             groupBox1.Controls.Add(btnChangePwd);
             groupBox1.Controls.Add(lbResultatMdp);
             groupBox1.Controls.Add(btnConnection);
@@ -66,10 +64,50 @@
             groupBox1.Controls.Add(label1);
             groupBox1.Location = new Point(139, 32);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(487, 406);
+            groupBox1.Size = new Size(487, 165);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "Se Connecter";
+            // 
+            // gbxOTP
+            // 
+            gbxOTP.Controls.Add(lbOTPresult);
+            gbxOTP.Controls.Add(btnOTP);
+            gbxOTP.Controls.Add(label5);
+            gbxOTP.Controls.Add(tbxOtp);
+            gbxOTP.Location = new Point(139, 203);
+            gbxOTP.Name = "gbxOTP";
+            gbxOTP.Size = new Size(200, 125);
+            gbxOTP.TabIndex = 10;
+            gbxOTP.TabStop = false;
+            gbxOTP.Text = "OTP";
+            // 
+            // lbOTPresult
+            // 
+            lbOTPresult.AutoSize = true;
+            lbOTPresult.Location = new Point(70, 48);
+            lbOTPresult.Name = "lbOTPresult";
+            lbOTPresult.Size = new Size(0, 15);
+            lbOTPresult.TabIndex = 11;
+            // 
+            // btnOTP
+            // 
+            btnOTP.Location = new Point(61, 66);
+            btnOTP.Name = "btnOTP";
+            btnOTP.Size = new Size(75, 23);
+            btnOTP.TabIndex = 10;
+            btnOTP.Text = "Valider Code";
+            btnOTP.UseVisualStyleBackColor = true;
+            btnOTP.Click += btnOTP_Click;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(6, 23);
+            label5.Name = "label5";
+            label5.Size = new Size(59, 15);
+            label5.TabIndex = 9;
+            label5.Text = "Code OTP";
             // 
             // tbxOtp
             // 
@@ -86,9 +124,9 @@
             gpbNewPwd.Controls.Add(btnSaveNewPwd);
             gpbNewPwd.Controls.Add(label3);
             gpbNewPwd.Controls.Add(tbxNewPwd1);
-            gpbNewPwd.Location = new Point(83, 263);
+            gpbNewPwd.Location = new Point(351, 203);
             gpbNewPwd.Name = "gpbNewPwd";
-            gpbNewPwd.Size = new Size(352, 125);
+            gpbNewPwd.Size = new Size(275, 125);
             gpbNewPwd.TabIndex = 7;
             gpbNewPwd.TabStop = false;
             gpbNewPwd.Text = "Nouveau Mots de Passe";
@@ -145,7 +183,7 @@
             // 
             // btnChangePwd
             // 
-            btnChangePwd.Location = new Point(217, 131);
+            btnChangePwd.Location = new Point(201, 127);
             btnChangePwd.Name = "btnChangePwd";
             btnChangePwd.Size = new Size(110, 23);
             btnChangePwd.TabIndex = 6;
@@ -163,7 +201,7 @@
             // 
             // btnConnection
             // 
-            btnConnection.Location = new Point(193, 102);
+            btnConnection.Location = new Point(180, 98);
             btnConnection.Name = "btnConnection";
             btnConnection.Size = new Size(142, 23);
             btnConnection.TabIndex = 4;
@@ -203,61 +241,23 @@
             label1.TabIndex = 0;
             label1.Text = "Identifiant:";
             // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new Point(6, 23);
-            label5.Name = "label5";
-            label5.Size = new Size(59, 15);
-            label5.TabIndex = 9;
-            label5.Text = "Code OTP";
-            // 
-            // gbxOTP
-            // 
-            gbxOTP.Controls.Add(lbOTPresult);
-            gbxOTP.Controls.Add(btnOTP);
-            gbxOTP.Controls.Add(label5);
-            gbxOTP.Controls.Add(tbxOtp);
-            gbxOTP.Location = new Point(180, 157);
-            gbxOTP.Name = "gbxOTP";
-            gbxOTP.Size = new Size(200, 100);
-            gbxOTP.TabIndex = 10;
-            gbxOTP.TabStop = false;
-            gbxOTP.Text = "OTP";
-            // 
-            // btnOTP
-            // 
-            btnOTP.Location = new Point(61, 66);
-            btnOTP.Name = "btnOTP";
-            btnOTP.Size = new Size(75, 23);
-            btnOTP.TabIndex = 10;
-            btnOTP.Text = "Valider Code";
-            btnOTP.UseVisualStyleBackColor = true;
-            btnOTP.Click += btnOTP_Click;
-            // 
-            // lbOTPresult
-            // 
-            lbOTPresult.AutoSize = true;
-            lbOTPresult.Location = new Point(70, 48);
-            lbOTPresult.Name = "lbOTPresult";
-            lbOTPresult.Size = new Size(0, 15);
-            lbOTPresult.TabIndex = 11;
-            // 
             // LoginForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(gpbNewPwd);
+            Controls.Add(gbxOTP);
             Controls.Add(groupBox1);
             Name = "LoginForm";
             Text = "LoginForm";
             Load += LoginForm_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
-            gpbNewPwd.ResumeLayout(false);
-            gpbNewPwd.PerformLayout();
             gbxOTP.ResumeLayout(false);
             gbxOTP.PerformLayout();
+            gpbNewPwd.ResumeLayout(false);
+            gpbNewPwd.PerformLayout();
             ResumeLayout(false);
         }
 

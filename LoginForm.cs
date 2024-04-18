@@ -18,6 +18,7 @@ using MailKit.Net.Smtp;
 using System.Collections.ObjectModel;
 using Microsoft.VisualBasic.Logging;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Cryptography;
 
 namespace LocaLux_GestActivite
 {
@@ -38,40 +39,63 @@ namespace LocaLux_GestActivite
         private void btnConnection_Click(object sender, EventArgs e)
         {
 
-
-            Utilisateur? unUtilisateur = (Utilisateur?)cnx.Utilisateurs.Where(e => e.Login == tbxLogin.Text).SingleOrDefault();
-
-            //hachage avec SHA512 du mot de passe saisi
-
-            //conversion en tableau d'octets
-
-            byte[] textAsByte = Encoding.Default.GetBytes(tbxPass.Text + unUtilisateur?.Sel);
-
-            //hachage
-
-            SHA512 sha512 = SHA512.Create();
-
-            byte[] hash = sha512.ComputeHash(textAsByte);
-
-            //mettre dans un format compatible avec MariaDB
-
-            String PwdSaisi = Convert.ToHexString(hash).ToLower();
-
-            if (PwdSaisi == unUtilisateur.Mdp)
+            if (tbxLogin.Text == "")
             {
-                lbResultatMdp.Text = "Correct Password !!!!";
-                (new ControleForm()).Show();
-                this.Hide();
+                MessageBox.Show("Veuillez saisir un login", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else if (PwdSaisi != unUtilisateur.Mdp)
+            else if (cnx.Utilisateurs.SingleOrDefault(e => e.Login == tbxLogin.Text) == null)
             {
-                lbResultatMdp.Text = "NEIN NEIN NEIN!; Mots de Passe INCORECTE!";
+                MessageBox.Show("Login incorect", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                Utilisateur? unUtilisateur = (Utilisateur?)cnx.Utilisateurs.Where(e => e.Login == tbxLogin.Text).SingleOrDefault();
+
+                //hachage avec SHA512 du mot de passe saisi
+
+                //conversion en tableau d'octets
+
+                byte[] textAsByte = Encoding.Default.GetBytes(tbxPass.Text + unUtilisateur?.Sel);
+
+                //hachage
+
+                SHA512 sha512 = SHA512.Create();
+
+                byte[] hash = sha512.ComputeHash(textAsByte);
+
+                //mettre dans un format compatible avec MariaDB
+
+                String PwdSaisi = Convert.ToHexString(hash).ToLower();
+
+                if (PwdSaisi == unUtilisateur.Mdp)
+                {
+                    lbResultatMdp.Text = "Correct Password !!!!";
+
+
+                    (new LocationNonControllerForm(unUtilisateur)).Show();
+                    this.Hide();
+                }
+                else if (PwdSaisi != unUtilisateur.Mdp)
+                {
+                    MessageBox.Show("NEIN NEIN NEIN!; Mots de Passe INCORECTE!", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
         private void btnChangePwd_Click(object sender, EventArgs e)
         {
-            gbxOTP.Show();
+            if (tbxLogin.Text == "")
+            {
+                MessageBox.Show("Veuillez saisir un login", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (cnx.Utilisateurs.SingleOrDefault(e => e.Login == tbxLogin.Text) == null)
+            {
+                MessageBox.Show("Login incorect", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                gbxOTP.Show();
+            }
 
         }
 
@@ -110,7 +134,7 @@ namespace LocaLux_GestActivite
                 if (PwdSaisi == unUtilisateur.Mdp || lesAncienMdpString.Contains(PwdSaisi))
                 {
 
-                    lbDifferentPwd.Text = "Mots de passe deja utilisée dans le passer, veuillez en choisir un nouveau.";
+                    MessageBox.Show("Mots de passe deja utilisée dans le passer, veuillez en choisir un nouveau.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
                 {
@@ -137,7 +161,7 @@ namespace LocaLux_GestActivite
 
                     gpbNewPwd.Hide();
 
-                    lbResultatMdp.Text = "Mots de Passe modifier";
+                    MessageBox.Show("Mots de Passe modifier", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
 
             }
@@ -147,7 +171,7 @@ namespace LocaLux_GestActivite
         {
             Utilisateur? unUtilisateur = (Utilisateur?)cnx.Utilisateurs.Where(e => e.Login == tbxLogin.Text).SingleOrDefault();
 
-            var base32Bytes = Base32Encoding.ToBytes(unUtilisateur.CodeOtp);
+            var base32Bytes = Base32Encoding.ToBytes((string)unUtilisateur.CodeOtp);
 
             var totp = new Totp(base32Bytes);
 
@@ -163,5 +187,7 @@ namespace LocaLux_GestActivite
                 lbOTPresult.Text = "Code incorect";
             }
         }
+
+
     }
 }

@@ -28,39 +28,39 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
+            lbNumLoca = new Label();
             lbModele = new Label();
             lbImmat = new Label();
             lbNumClient = new Label();
             lbClient = new Label();
             groupBox1 = new GroupBox();
+            lbDateHeure = new Label();
+            tableLayoutPanel1 = new TableLayoutPanel();
             nudKilometrage = new NumericUpDown();
-            textBox4 = new TextBox();
             tbxObservation = new TextBox();
             label10 = new Label();
             label9 = new Label();
             label8 = new Label();
             label7 = new Label();
-            label6 = new Label();
+            lbControleNumEmployer = new Label();
             label11 = new Label();
             btnSave = new Button();
             btnPdf = new Button();
-            cbbIdLocation = new ComboBox();
             nudCoutReparation = new NumericUpDown();
-            flowLayoutPanel1 = new FlowLayoutPanel();
+            btnRetour = new Button();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nudKilometrage).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudCoutReparation).BeginInit();
             SuspendLayout();
             // 
-            // label1
+            // lbNumLoca
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(38, 9);
-            label1.Name = "label1";
-            label1.Size = new Size(119, 15);
-            label1.TabIndex = 0;
-            label1.Text = "Numero de Location:";
+            lbNumLoca.AutoSize = true;
+            lbNumLoca.Location = new Point(38, 9);
+            lbNumLoca.Name = "lbNumLoca";
+            lbNumLoca.Size = new Size(119, 15);
+            lbNumLoca.TabIndex = 0;
+            lbNumLoca.Text = "Numero de Location:";
             // 
             // lbModele
             // 
@@ -100,34 +100,63 @@
             // 
             // groupBox1
             // 
-            groupBox1.Controls.Add(flowLayoutPanel1);
+            groupBox1.Controls.Add(lbDateHeure);
+            groupBox1.Controls.Add(tableLayoutPanel1);
             groupBox1.Controls.Add(nudKilometrage);
-            groupBox1.Controls.Add(textBox4);
             groupBox1.Controls.Add(tbxObservation);
             groupBox1.Controls.Add(label10);
             groupBox1.Controls.Add(label9);
             groupBox1.Controls.Add(label8);
             groupBox1.Controls.Add(label7);
-            groupBox1.Controls.Add(label6);
             groupBox1.Location = new Point(73, 57);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(652, 323);
             groupBox1.TabIndex = 5;
             groupBox1.TabStop = false;
             // 
+            // lbDateHeure
+            // 
+            lbDateHeure.AutoSize = true;
+            lbDateHeure.Location = new Point(340, 30);
+            lbDateHeure.Name = "lbDateHeure";
+            lbDateHeure.Size = new Size(63, 15);
+            lbDateHeure.TabIndex = 11;
+            lbDateHeure.Text = "DateHeure";
+            // 
+            // tableLayoutPanel1
+            // 
+            tableLayoutPanel1.ColumnCount = 4;
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 87.0129852F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 12.9870129F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 23F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 333F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel1.Location = new Point(69, 72);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.RowCount = 10;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 56F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 44F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 21F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 19F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 21F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 19F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 21F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel1.Size = new Size(531, 216);
+            tableLayoutPanel1.TabIndex = 10;
+            // 
             // nudKilometrage
             // 
-            nudKilometrage.Location = new Point(191, 61);
+            nudKilometrage.Location = new Point(191, 28);
+            nudKilometrage.Maximum = new decimal(new int[] { 999999, 0, 0, 0 });
             nudKilometrage.Name = "nudKilometrage";
             nudKilometrage.Size = new Size(120, 23);
             nudKilometrage.TabIndex = 9;
-            // 
-            // textBox4
-            // 
-            textBox4.Location = new Point(340, 60);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(97, 23);
-            textBox4.TabIndex = 8;
             // 
             // tbxObservation
             // 
@@ -148,7 +177,7 @@
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(218, 98);
+            label9.Location = new Point(222, 54);
             label9.Name = "label9";
             label9.Size = new Size(199, 15);
             label9.TabIndex = 3;
@@ -158,7 +187,7 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(218, 42);
+            label8.Location = new Point(222, 10);
             label8.Name = "label8";
             label8.Size = new Size(71, 15);
             label8.TabIndex = 2;
@@ -167,20 +196,20 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(340, 42);
+            label7.Location = new Point(340, 10);
             label7.Name = "label7";
             label7.Size = new Size(68, 15);
             label7.TabIndex = 1;
             label7.Text = "Date-Heure";
             // 
-            // label6
+            // lbControleNumEmployer
             // 
-            label6.AutoSize = true;
-            label6.Location = new Point(51, 19);
-            label6.Name = "label6";
-            label6.Size = new Size(155, 15);
-            label6.TabIndex = 0;
-            label6.Text = "Contrôle n°          réaliser par";
+            lbControleNumEmployer.AutoSize = true;
+            lbControleNumEmployer.Location = new Point(360, 39);
+            lbControleNumEmployer.Name = "lbControleNumEmployer";
+            lbControleNumEmployer.Size = new Size(155, 15);
+            lbControleNumEmployer.TabIndex = 0;
+            lbControleNumEmployer.Text = "Contrôle n°          réaliser par";
             // 
             // label11
             // 
@@ -209,46 +238,43 @@
             btnPdf.TabIndex = 10;
             btnPdf.Text = "Imprimer";
             btnPdf.UseVisualStyleBackColor = true;
-            // 
-            // cbbIdLocation
-            // 
-            cbbIdLocation.FormattingEnabled = true;
-            cbbIdLocation.Location = new Point(163, 9);
-            cbbIdLocation.Name = "cbbIdLocation";
-            cbbIdLocation.Size = new Size(121, 23);
-            cbbIdLocation.TabIndex = 11;
-            cbbIdLocation.SelectedIndexChanged += cbbIdLocation_SelectedIndexChanged;
+            btnPdf.Click += btnPdf_Click;
             // 
             // nudCoutReparation
             // 
             nudCoutReparation.Location = new Point(389, 387);
+            nudCoutReparation.Maximum = new decimal(new int[] { 99999, 0, 0, 0 });
             nudCoutReparation.Name = "nudCoutReparation";
             nudCoutReparation.Size = new Size(120, 23);
             nudCoutReparation.TabIndex = 12;
             // 
-            // flowLayoutPanel1
+            // btnRetour
             // 
-            flowLayoutPanel1.Location = new Point(69, 116);
-            flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(502, 172);
-            flowLayoutPanel1.TabIndex = 10;
+            btnRetour.Location = new Point(13, 415);
+            btnRetour.Name = "btnRetour";
+            btnRetour.Size = new Size(75, 23);
+            btnRetour.TabIndex = 13;
+            btnRetour.Text = "Retour";
+            btnRetour.UseVisualStyleBackColor = true;
+            btnRetour.Click += btnRetour_Click;
             // 
             // ControleForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnRetour);
             Controls.Add(nudCoutReparation);
-            Controls.Add(cbbIdLocation);
             Controls.Add(btnPdf);
             Controls.Add(btnSave);
             Controls.Add(label11);
             Controls.Add(groupBox1);
             Controls.Add(lbClient);
             Controls.Add(lbNumClient);
+            Controls.Add(lbControleNumEmployer);
             Controls.Add(lbImmat);
             Controls.Add(lbModele);
-            Controls.Add(label1);
+            Controls.Add(lbNumLoca);
             Name = "ControleForm";
             Text = ":!";
             Load += ControleForm_Load;
@@ -262,13 +288,13 @@
 
         #endregion
 
-        private Label label1;
+        private Label lbNumLoca;
         private Label lbModele;
         private Label lbImmat;
         private Label lbNumClient;
         private Label lbClient;
         private GroupBox groupBox1;
-        private Label label6;
+        private Label lbControleNumEmployer;
         private Label label9;
         private Label label8;
         private Label label7;
@@ -277,10 +303,10 @@
         private Label label11;
         private Button btnSave;
         private Button btnPdf;
-        private TextBox textBox4;
-        private ComboBox cbbIdLocation;
         private NumericUpDown nudKilometrage;
         private NumericUpDown nudCoutReparation;
-        private FlowLayoutPanel flowLayoutPanel1;
+        private TableLayoutPanel tableLayoutPanel1;
+        private Button btnRetour;
+        private Label lbDateHeure;
     }
 }
