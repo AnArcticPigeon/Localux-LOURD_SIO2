@@ -54,8 +54,8 @@ namespace LocaLux_GestActivite
             lbClient.Text = "Client:  " + uneReservation.LeClient.Nom + " " + uneReservation.LeClient.Prenom;
             lbNumClient.Text = "Num Client:  " + uneReservation.LeClient.Id;
             lbModele.Text = "Modèle:  " + uneReservation.LaVoiture.LeModele.Libelle;
-            
-            
+
+
 
             if (uneReservation != null && uneReservation.LaVoiture.LeModele != null && uneReservation.LaVoiture.LeModele.Pieces != null)
             {
@@ -63,7 +63,7 @@ namespace LocaLux_GestActivite
                 AddCarPartsAndCheckboxesWithStateLabels(newCarParts);
             }
 
-            if(uneReservation.LeControle != null)
+            if (uneReservation.LeControle != null)
             {
                 lbDateHeure.Text = uneReservation.LeControle.DateHeure.ToString("dd/MM/yyyy HH:mm:ss");
                 lbControleNumEmployer.Text = "Contrôle réaliser par:  " + uneReservation.LeControle.EmployeVerif.Prenom + " " + uneReservation.LeControle.EmployeVerif.Nom;
@@ -222,7 +222,7 @@ namespace LocaLux_GestActivite
 
                         if (verification != null)
                         {
-                            if (verification.IdDegatId == j + 1) 
+                            if (verification.IdDegatId == j + 1)
                             {
                                 checkbox.Checked = true;
                             }
@@ -246,7 +246,7 @@ namespace LocaLux_GestActivite
                             TypeDegat = typeDegat
                         };
                     }
-                    
+
                     tableLayoutPanel1.Controls.Add(checkbox, j + 1, i + 1); // Column j+1, Row i+1
 
                     // Add the checkbox to the row's list
@@ -302,9 +302,9 @@ namespace LocaLux_GestActivite
 
         private void btnPdf_Click(object sender, EventArgs e)
         {
-            
+
             // Step 1: Get the path of the special folder
-            string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 
             // Step 2: Combine the path with the file name
             string filePath = Path.Combine(desktopPath, "Constat_Etat_Voiture_Location_" + this.laLocation.Id + ".pdf");

@@ -29,7 +29,33 @@ namespace LocaLux_GestActivite
 
         private void AjoutUtilisateurForm_Load(object sender, EventArgs e)
         {
+            /*
+            Utilisateur? unUtilisateur = (Utilisateur?)cnx.Utilisateurs.Where(e => e.Login == "totp").SingleOrDefault();
+            ///// generation secret otp
 
+            var key = KeyGeneration.GenerateRandomKey(20);
+
+            var base32String = Base32Encoding.ToString(key);
+
+            unUtilisateur.CodeOtp = base32String;
+            cnx.SaveChanges();
+
+            //// generation du QR Code
+
+            var uriString = new OtpUri(OtpType.Totp, base32String, unUtilisateur.Email, "SAVARY").ToString();
+
+            QRCodeGenerator qrGenerator = new QRCodeGenerator();
+
+            QRCodeData qrCodeData = qrGenerator.CreateQrCode(uriString, QRCodeGenerator.ECCLevel.Q);
+
+            QRCode qrCode = new QRCode(qrCodeData);
+
+            Bitmap qrCodeImage = qrCode.GetGraphic(2);
+
+            // affichage dur QR code
+
+            pictureBoxQRCode.Image = qrCodeImage;
+            */
         }
 
         private void btnCreer_Click(object sender, EventArgs e)

@@ -49,36 +49,47 @@ namespace LocaLux_GestActivite
             }
             else
             {
-                Utilisateur? unUtilisateur = (Utilisateur?)cnx.Utilisateurs.Where(e => e.Login == tbxLogin.Text).SingleOrDefault();
+                Utilisateur? unUtilisateur = (Utilisateur?)cnx.Utilisateurs.Include(p => p.AncienMdps).Where(e => e.Login == tbxLogin.Text).SingleOrDefault();
 
-                //hachage avec SHA512 du mot de passe saisi
-
-                //conversion en tableau d'octets
-
-                byte[] textAsByte = Encoding.Default.GetBytes(tbxPass.Text + unUtilisateur?.Sel);
-
-                //hachage
-
-                SHA512 sha512 = SHA512.Create();
-
-                byte[] hash = sha512.ComputeHash(textAsByte);
-
-                //mettre dans un format compatible avec MariaDB
-
-                String PwdSaisi = Convert.ToHexString(hash).ToLower();
-
-                if (PwdSaisi == unUtilisateur.Mdp)
+                foreach (AncienMdp unVieuxMdp in unUtilisateur.AncienMdps)
                 {
-                    lbResultatMdp.Text = "Correct Password !!!!";
+                    if (DateTime.Now.AddDays(-30) > unVieuxMdp.DateModifMdp)
+                    {
+                        MessageBox.Show("Votre mot de passe a expiré, veuillez en choisir un nouveau.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        //hachage avec SHA512 du mot de passe saisi
+
+                        //conversion en tableau d'octets
+
+                        byte[] textAsByte = Encoding.Default.GetBytes(tbxPass.Text + unUtilisateur?.Sel);
+
+                        //hachage
+
+                        SHA512 sha512 = SHA512.Create();
+
+                        byte[] hash = sha512.ComputeHash(textAsByte);
+
+                        //mettre dans un format compatible avec MariaDB
+
+                        String PwdSaisi = Convert.ToHexString(hash).ToLower();
+
+                        if (PwdSaisi == unUtilisateur.Mdp)
+                        {
+                            lbResultatMdp.Text = "Correct Password !!!!";
 
 
-                    (new LocationNonControllerForm(unUtilisateur)).Show();
-                    this.Hide();
+                            (new LocationNonControllerForm(unUtilisateur)).Show();
+                            this.Hide();
+                        }
+                        else if (PwdSaisi != unUtilisateur.Mdp)
+                        {
+                            MessageBox.Show("NEIN NEIN NEIN!; Mots de Passe INCORECTE!", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
                 }
-                else if (PwdSaisi != unUtilisateur.Mdp)
-                {
-                    MessageBox.Show("NEIN NEIN NEIN!; Mots de Passe INCORECTE!", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                
             }
         }
 
