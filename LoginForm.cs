@@ -60,25 +60,20 @@ namespace LocaLux_GestActivite
                     else
                     {
                         //hachage avec SHA512 du mot de passe saisi
+                        SHA512 sha512 = SHA512.Create();
 
                         //conversion en tableau d'octets
-
                         byte[] textAsByte = Encoding.Default.GetBytes(tbxPass.Text + unUtilisateur?.Sel);
 
                         //hachage
-
-                        SHA512 sha512 = SHA512.Create();
-
                         byte[] hash = sha512.ComputeHash(textAsByte);
 
                         //mettre dans un format compatible avec MariaDB
-
                         String PwdSaisi = Convert.ToHexString(hash).ToLower();
 
                         if (PwdSaisi == unUtilisateur.Mdp)
                         {
                             lbResultatMdp.Text = "Correct Password !!!!";
-
 
                             (new LocationNonControllerForm(unUtilisateur)).Show();
                             this.Hide();
@@ -112,9 +107,7 @@ namespace LocaLux_GestActivite
 
         private void btnSaveNewPwd_Click(object sender, EventArgs e)
         {
-
             Utilisateur? unUtilisateur = cnx.Utilisateurs.Include(u => u.AncienMdps).SingleOrDefault(e => e.Login == tbxLogin.Text);
-
             if (tbxNewPwd1.Text != tbxNewPwd2.Text)
             {
                 lbDifferentPwd.Text = "Les mots de passes saisie ne sont pas identique";
@@ -124,54 +117,36 @@ namespace LocaLux_GestActivite
                 byte[] textAsByte = Encoding.Default.GetBytes(tbxNewPwd1.Text + unUtilisateur?.Sel);
 
                 //hachage
-
                 SHA512 sha512 = SHA512.Create();
-
                 byte[] hash = sha512.ComputeHash(textAsByte);
-
                 //mettre dans un format compatible avec MariaDB²
-
                 String PwdSaisi = Convert.ToHexString(hash).ToLower();
-
                 ICollection<AncienMdp> lesAncienMdp = unUtilisateur.AncienMdps;
-
                 var lesAncienMdpString = new List<string> { };
-
                 foreach (AncienMdp unAncienMdp in lesAncienMdp)
                 {
                     lesAncienMdpString.Add(unAncienMdp.AncienMdp1);
                 }
-
                 if (PwdSaisi == unUtilisateur.Mdp || lesAncienMdpString.Contains(PwdSaisi))
                 {
-
                     MessageBox.Show("Mots de passe deja utilisée dans le passer, veuillez en choisir un nouveau.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
                 {
                     AncienMdp ancienMdp = new AncienMdp()
                     {
-
                         DateModifMdp = DateTime.Now,
-
                         AncienMdp1 = unUtilisateur.Mdp,
-
                     };
-
                     unUtilisateur.AncienMdps.Add(ancienMdp);
 
-                    //mot de passe
+                    // nouv mot de passe
 
                     byte[] newTextAsByte = Encoding.Default.GetBytes(tbxNewPwd1.Text + unUtilisateur.Sel);
-
                     byte[] newHash = sha512.ComputeHash(newTextAsByte);
-
                     unUtilisateur.Mdp = Convert.ToHexString(newHash).ToLower();
-
                     cnx.SaveChanges();
-
                     gpbNewPwd.Hide();
-
                     MessageBox.Show("Mots de Passe modifier", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
 

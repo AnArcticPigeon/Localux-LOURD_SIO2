@@ -48,14 +48,11 @@ namespace LocaLux_GestActivite
                 .Include(v => v.LeControle)
                 .SingleOrDefault(e => e.Id == this.laLocation.Id);
 
-
             lbNumLoca.Text = "Num Location:  " + uneReservation.Id;
             lbImmat.Text = "Immatriculation:  " + uneReservation.LaVoiture.Immatriculation;
             lbClient.Text = "Client:  " + uneReservation.LeClient.Nom + " " + uneReservation.LeClient.Prenom;
             lbNumClient.Text = "Num Client:  " + uneReservation.LeClient.Id;
             lbModele.Text = "Modèle:  " + uneReservation.LaVoiture.LeModele.Libelle;
-
-
 
             if (uneReservation != null && uneReservation.LaVoiture.LeModele != null && uneReservation.LaVoiture.LeModele.Pieces != null)
             {
@@ -117,17 +114,14 @@ namespace LocaLux_GestActivite
                     Piece piece = pieces[i]; // Access by index directly
                     TypeDegat typeDegat = null; // Initialize to null
 
-                    // Determine the TypeDegat based on which checkbox is checked
                     for (int j = 0; j < 3; j++)
                     {
                         CheckBox checkbox = (CheckBox)tableLayoutPanel1.GetControlFromPosition(j + 1, i + 1);
                         if (checkbox.Checked)
                         {
-                            // Attempt to cast the Tag to PieceTypeDegat
                             PieceTypeDegat pieceTypeDegat = checkbox.Tag as PieceTypeDegat;
                             if (pieceTypeDegat != null)
                             {
-                                // Now you can access the TypeDegat property of the PieceTypeDegat object
                                 typeDegat = pieceTypeDegat.TypeDegat;
                                 break;
                             }
@@ -136,22 +130,17 @@ namespace LocaLux_GestActivite
 
                     if (typeDegat != null)
                     {
-                        // Create a Verification instance
                         Verification verification = new Verification
                         {
                             IdPieceId = piece.Id,
                             IdDegatId = typeDegat.Id,
-                            IdControleId = leControle.Id // Assuming leControle has been saved and has an ID
+                            IdControleId = leControle.Id
                         };
-
-                        // Add the Verification to the context
                         cnx.Verifications.Add(verification);
                     }
                 }
 
-                // Save the changes to the database
                 cnx.SaveChanges();
-
                 MessageBox.Show("Contrôle enregistré avec succès", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
@@ -174,13 +163,12 @@ namespace LocaLux_GestActivite
         {
             Reservation? uneReservation = cnx.Reservations.Include(u => u.LaVoiture).Include(i => i.LeClient).Include(v => v.LeControle).SingleOrDefault(e => e.Id == (this.laLocation.Id));
 
-            // Clear existing controls and reset the dictionary
             tableLayoutPanel1.Controls.Clear();
             rowCheckboxes.Clear();
-            tableLayoutPanel1.RowCount = carParts.Length + 1; // Add 1 for the state labels
-            tableLayoutPanel1.ColumnCount = 4; // 1 for part names, 3 for states
+            tableLayoutPanel1.RowCount = carParts.Length + 1;
+            tableLayoutPanel1.ColumnCount = 4;
 
-            // Add state labels
+            // add label degat
             for (int i = 0; i < 3; i++)
             {
                 Label stateLabel = new Label
@@ -189,20 +177,20 @@ namespace LocaLux_GestActivite
                     AutoSize = true,
                     Dock = DockStyle.Fill
                 };
-                tableLayoutPanel1.Controls.Add(stateLabel, i + 1, 0); // Column i+1, Row 0
+                tableLayoutPanel1.Controls.Add(stateLabel, i + 1, 0);
             }
 
-            // for each row
+            // for each row in the table
             for (int i = 0; i < carParts.Length; i++)
             {
-                // Add a label for the part name
+                // Add label nom piece
                 Label partLabel = new Label
                 {
                     Text = carParts[i],
                     AutoSize = true,
                     Dock = DockStyle.Fill
                 };
-                tableLayoutPanel1.Controls.Add(partLabel, 0, i + 1); // Column 0, Row i+1
+                tableLayoutPanel1.Controls.Add(partLabel, 0, i + 1);
 
                 // add 3 checkboxes
                 for (int j = 0; j < 3; j++)
@@ -231,25 +219,21 @@ namespace LocaLux_GestActivite
                     }
                     else
                     {
-                        checkbox.CheckedChanged += Checkbox_CheckedChanged; // Attach event handler
+                        checkbox.CheckedChanged += Checkbox_CheckedChanged;
 
-                        // Fetch TypeDegats into memory first
                         var typeDegats = cnx.TypeDegats.ToList();
 
-                        // Assuming you have a way to determine the TypeDegat for each checkbox
-                        TypeDegat typeDegat = typeDegats.ElementAt(j); // This might need adjustment based on your actual data model
+                        TypeDegat typeDegat = typeDegats.ElementAt(j);
 
-                        // Set the Tag to an instance of PieceTypeDegat
                         checkbox.Tag = new PieceTypeDegat
                         {
-                            Piece = uneReservation.LaVoiture.LeModele.Pieces.ElementAt(i), // Assuming the order matches the checkboxes
+                            Piece = uneReservation.LaVoiture.LeModele.Pieces.ElementAt(i),
                             TypeDegat = typeDegat
                         };
                     }
 
-                    tableLayoutPanel1.Controls.Add(checkbox, j + 1, i + 1); // Column j+1, Row i+1
+                    tableLayoutPanel1.Controls.Add(checkbox, j + 1, i + 1); 
 
-                    // Add the checkbox to the row's list
                     if (!rowCheckboxes.ContainsKey(i))
                     {
                         rowCheckboxes[i] = new List<CheckBox>();
@@ -272,7 +256,7 @@ namespace LocaLux_GestActivite
                 {
                     if (tableLayoutPanel1.GetControlFromPosition(j, i) == checkbox)
                     {
-                        rowIndex = i - 1; // Subtract 1 to account for the state labels row
+                        rowIndex = i - 1;
                         break;
                     }
                 }
@@ -281,7 +265,7 @@ namespace LocaLux_GestActivite
 
             if (rowIndex != -1 && rowCheckboxes.ContainsKey(rowIndex))
             {
-                // Uncheck all other checkboxes in the same row
+                // Uncheck all other checkboxes on the same row
                 foreach (var otherCheckbox in rowCheckboxes[rowIndex])
                 {
                     if (otherCheckbox != checkbox)
@@ -290,8 +274,6 @@ namespace LocaLux_GestActivite
                     }
                 }
             }
-
-            // Perform other actions based on the checkbox state
         }
 
         private void btnRetour_Click(object sender, EventArgs e)
@@ -303,28 +285,21 @@ namespace LocaLux_GestActivite
         private void btnPdf_Click(object sender, EventArgs e)
         {
 
-            // Step 1: Get the path of the special folder
             string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 
-            // Step 2: Combine the path with the file name
             string filePath = Path.Combine(desktopPath, "Constat_Etat_Voiture_Location_" + this.laLocation.Id + ".pdf");
 
-            // Step 3: Create a PdfWriter object
             PdfWriter writer = new PdfWriter(filePath);
-
-            // Step 4: Create a PdfDocument object
             PdfDocument pdf = new PdfDocument(writer);
-
-            // Step 5: Create a Document object
             Document document = new Document(pdf);
 
-            // Add a header to the document
+            // header
             Paragraph header = new Paragraph("Constat, Etat de la Voiture")
                 .SetTextAlignment(TextAlignment.CENTER)
                 .SetFontSize(20);
             document.Add(header);
 
-            // Add reservation details
+            // detail reservation
             Paragraph reservationDetails = new Paragraph()
                 .Add("Num Location: " + lbNumLoca.Text + "\n")
                 .Add("Immatriculation: " + lbImmat.Text + "\n")
@@ -333,7 +308,7 @@ namespace LocaLux_GestActivite
                 .Add("Modèle: " + lbModele.Text + "\n");
             document.Add(reservationDetails);
 
-            // Add control details if available
+            // detail controle
             if (lbDateHeure.Text != string.Empty && lbControleNumEmployer.Text != string.Empty)
             {
                 Paragraph controlDetails = new Paragraph()
@@ -345,10 +320,8 @@ namespace LocaLux_GestActivite
                 document.Add(controlDetails);
             }
 
-            // Close the document
             document.Close();
 
-            // Optionally, show a message to the user
             MessageBox.Show("PDF généré avec succès dans vos documents.", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
         }

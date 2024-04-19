@@ -1,0 +1,8 @@
+C:\Users\aburnett\Desktop\LocaLux-GestActivite.pdb
+C:\Users\aburnett\Desktop\D3DCompiler_47_cor3.dll
+C:\Users\aburnett\Desktop\PenImc_cor3.dll
+C:\Users\aburnett\Desktop\PresentationNative_cor3.dll
+C:\Users\aburnett\Desktop\vcruntime140_cor3.dll
+C:\Users\aburnett\Desktop\wpfgfx_cor3.dll
+C:\Users\aburnett\Desktop\libSkiaSharp.dll
+C:\Users\aburnett\Desktop\LocaLux-GestActivite.exe
